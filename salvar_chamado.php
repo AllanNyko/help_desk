@@ -14,3 +14,5 @@ $arquivoDB = fopen('chamados.txt', 'a');
 $textoNovo = $titulo . '#' . $categoria . '#' . $descricao . PHP_EOL;
 fwrite($arquivoDB, $textoNovo);
 fclose($arquivoDB);
+
+header('Location: abrir_chamado.php');

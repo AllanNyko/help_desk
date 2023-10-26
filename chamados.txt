@@ -1,2 +1,4 @@
-Pc lento#Rede#Acesso a internet mto lento.
-Pc lento#Rede#Acesso a internet mto lento.
+PC não liga.#Hardware#Verificar cabeamento rompido, se há fonte de energia ligada.
+Fonte de desktop queimou.#Hardware#Repor fonte segundo requisto técnico do equipamento.
+Pc lento#Hardware#pece n ltem bom desempenho
+Tinta acabou.#Impressora#LEvar outra recarga de tinta.
