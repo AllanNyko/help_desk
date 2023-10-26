@@ -1,20 +1,19 @@
 <?php require_once('validador_login.php');
 
 $chamados = [];
-$file_path = fopen('chamados.txt', 'r');
+$file_path = fopen('../../help_desk_protected/chamados.txt', 'r');
 
 while (!feof($file_path)) {
   $chamados[] = fgets($file_path);
 }
 
 fclose($file_path);
-
 ?>
 <html>
 
 <head>
   <meta charset="utf-8" />
-  <title>App Help Desk</title>
+  <title>Help Desk</title>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -29,12 +28,7 @@ fclose($file_path);
 
 <body>
 
-  <nav class="navbar navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">
-      <img src="logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
-      App Help Desk
-    </a>
-  </nav>
+  <?php require_once('navbar.php'); ?>
 
   <div class="container">
     <div class="row">
@@ -46,28 +40,33 @@ fclose($file_path);
           </div>
 
           <div class="card-body">
-
-
-
             <?php
 
             foreach ($chamados as $key => $chamadoString) { ?>
               <?php $chamado = explode('#', $chamadoString);
-              $lastIndex = count($chamados) - 1;
-              if ($key === $lastIndex) {
+              $lastItem  = count($chamados) - 1;
+
+              if ($_SESSION['perfil_id'] == 2) {
+                if ($_SESSION['id'] !=  $chamado[0]) {
+                  continue;
+                }
+              }
+              if ($key === $lastItem) {
                 break;
               }
 
               ?>
               <div class="card mb-3 bg-light">
+                <div class="container text-start fw-bold"><?= $chamado[0] ?></div>
                 <div class="card-body">
                   <h5 class="card-title">
-                    <?= $chamado[0] ?>
+                    <?= $chamado[1] ?>
                   </h5>
-                  <h6 class="card-subtitle mb-2 text-muted"><?= $chamado[1] ?></h6>
-                  <p class="card-text"><?= $chamado[2] ?></p>
+                  <h6 class="card-subtitle mb-2 text-muted"><?= $chamado[2] ?></h6>
+                  <p class="card-text"><?= $chamado[3] ?></p>
                 </div>
               </div>
+
 
             <?php } ?>
 
